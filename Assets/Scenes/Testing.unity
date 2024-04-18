@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 250065252307333855, guid: dbaa9459c38ca724282be7e9113699da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5111293
+      value: 1.510373
       objectReference: {fileID: 0}
     - target: {fileID: 250065252307333855, guid: dbaa9459c38ca724282be7e9113699da,
         type: 3}
@@ -461,7 +461,7 @@ PrefabInstance:
     - target: {fileID: 250065252307333855, guid: dbaa9459c38ca724282be7e9113699da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3087113
+      value: 1.3080765
       objectReference: {fileID: 0}
     - target: {fileID: 250065252307333855, guid: dbaa9459c38ca724282be7e9113699da,
         type: 3}
@@ -1655,6 +1655,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2035199429}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8f2a8ac75ec45d40b96b3c8de29a080,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2035199431}
   m_SourcePrefab: {fileID: 100100000, guid: b8f2a8ac75ec45d40b96b3c8de29a080, type: 3}
 --- !u!1 &991128255
 GameObject:
@@ -2840,7 +2844,7 @@ Transform:
   m_GameObject: {fileID: 1587561062}
   serializedVersion: 2
   m_LocalRotation: {x: 0.04972137, y: 0, z: 0, w: 0.99876314}
-  m_LocalPosition: {x: 1.5111293, y: 1.8258849, z: -19.404114}
+  m_LocalPosition: {x: 1.510373, y: 1.8258849, z: -19.404114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3563,6 +3567,22 @@ MonoBehaviour:
   toucheBouclier: 50
   capaciteImageGrenade: {fileID: 626969191}
   toucheGrenade: 51
+--- !u!114 &2035199431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035199418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817c19d653165294fa95d5862ad8d7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 2
+  deceleration: 2
+  velociteMaximaleMarche: 0.5
+  velociteMaximalCourse: 1
 --- !u!1 &2037920305
 GameObject:
   m_ObjectHideFlags: 0
