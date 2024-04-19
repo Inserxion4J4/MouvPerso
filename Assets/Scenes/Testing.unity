@@ -3582,7 +3582,7 @@ MonoBehaviour:
   acceleration: 2
   deceleration: 2
   velociteMaximaleMarche: 0.5
-  velociteMaximalCourse: 1
+  velociteMaximalCourse: 2
 --- !u!1 &2037920305
 GameObject:
   m_ObjectHideFlags: 0

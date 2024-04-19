@@ -25,12 +25,15 @@ public class TestAnimationBlendTree : MonoBehaviour
 
     void changementVelocite(bool boutonHaut, bool boutonGauche, bool boutonDroite, bool boutonCourse, float velociteMaxActuelle)
     {
+
+        print(velociteMaxActuelle);
         if (boutonHaut && velocityZ < velociteMaxActuelle)
         {
             velocityZ += Time.deltaTime * acceleration;
         }
-        if (boutonGauche && velocityX > velociteMaxActuelle)
+        if (boutonGauche && velocityX > -velociteMaxActuelle)
         {
+            
             velocityX -= Time.deltaTime * acceleration;
         }
         if (boutonDroite && velocityX < velociteMaxActuelle)
@@ -61,7 +64,7 @@ public class TestAnimationBlendTree : MonoBehaviour
             velocityZ = 0.0f;
         }
 
-        if (!boutonGauche && !boutonDroite && velocityX != 0.0f && (velocityX > -0.05f && velocityX < 0.05f))
+        if (!boutonGauche && !boutonDroite && velocityX != 0.0f && (velocityX < -0.05f && velocityX > 0.05f))
         {
             velocityX = 0.0f;
         }
@@ -91,7 +94,7 @@ public class TestAnimationBlendTree : MonoBehaviour
         float velociteMaxActuelle = boutonCourse ? velociteMaximalCourse : velociteMaximaleMarche;
 
       changementVelocite(boutonHaut, boutonGauche,boutonDroite,boutonCourse, velociteMaxActuelle);
-        gardeOuChangeVelocite(boutonHaut, boutonGauche, boutonDroite, boutonCourse, velociteMaxActuelle);
+      //  gardeOuChangeVelocite(boutonHaut, boutonGauche, boutonDroite, boutonCourse, velociteMaxActuelle);
       
         animator.SetFloat(VelociteZHash, velocityZ);
         animator.SetFloat(VelociteXHash, velocityX);
