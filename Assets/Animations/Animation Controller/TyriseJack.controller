@@ -70,9 +70,9 @@ BlendTree:
     m_DirectBlendParameter: vitessePerso
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 53d85deadd2ab424987173792a8f1a26, type: 2}
+    m_Motion: {fileID: 7400000, guid: 3fcc81e87e43ce64e8c657d6f6fbffd6, type: 2}
     m_Threshold: 4
-    m_Position: {x: 0, y: -0.5}
+    m_Position: {x: 0, y: 2}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: vitessePerso
@@ -93,42 +93,10 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: vitessePerso
     m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: de397d8cb738fab438ba499eef9dddc7, type: 2}
-    m_Threshold: 7
-    m_Position: {x: -0.5, y: 0.5}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: vitessePerso
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 0963763f0d9c192479eaee6f36016811, type: 2}
-    m_Threshold: 8
-    m_Position: {x: 0.5, y: 0.5}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: vitessePerso
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 3fcc81e87e43ce64e8c657d6f6fbffd6, type: 2}
-    m_Threshold: 9
-    m_Position: {x: 0, y: 1}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: vitessePerso
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ba3d108da28ae26428a66a389d66483c, type: 2}
-    m_Threshold: 10
-    m_Position: {x: 0, y: -1}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: vitessePerso
-    m_Mirror: 0
   m_BlendParameter: VelocityX
   m_BlendParameterY: VelocityZ
   m_MinThreshold: 2
-  m_MaxThreshold: 10
+  m_MaxThreshold: 6
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 2
@@ -191,13 +159,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: VelocityZ
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
