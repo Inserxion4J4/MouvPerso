@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
@@ -35,6 +36,16 @@ public class MouvementPerso : MonoBehaviour
     private InputAction jumpAction;
     private InputAction shootAction;
 
+    // Capacités
+    bool dashDispo = true;
+
+    // Sons
+    public AudioClip sonTirPistolet;
+    AudioSource audioSource;
+
+    public GameObject bouclierGenere;
+    bool bouclierDispo = true;
+
 
     private void Awake()
     {
@@ -42,12 +53,14 @@ public class MouvementPerso : MonoBehaviour
         input = GetComponent<PlayerInput>();
 
         cameraTransform = Camera.main.transform;
-        moveAction =  input.actions["Mouvement"];
+        moveAction = input.actions["Mouvement"];
         jumpAction = input.actions["Jump"];
         shootAction = input.actions["Shoot"];
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -63,25 +76,28 @@ public class MouvementPerso : MonoBehaviour
 
     private void shootGun()
     {
-
-        RaycastHit hit;
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
-        BulletController bulletController = bullet.GetComponent<BulletController>();
-
-        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
+        if (gestionUI.chargeurActuel > 0)
         {
+            audioSource.PlayOneShot(sonTirPistolet);
+            RaycastHit hit;
+            GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
+            BulletController bulletController = bullet.GetComponent<BulletController>();
 
-            bulletController.target = hit.point;
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
+            {
 
-            bulletController.hit = true;
+                bulletController.target = hit.point;
 
-        }
-        else
-        {
+                bulletController.hit = true;
 
-            bulletController.target = cameraTransform.position + cameraTransform.forward * missDistance;
+            }
+            else
+            {
 
-            bulletController.hit = false;
+                bulletController.target = cameraTransform.position + cameraTransform.forward * missDistance;
+
+                bulletController.hit = false;
+            }
         }
     }
 
@@ -96,7 +112,7 @@ public class MouvementPerso : MonoBehaviour
         Vector2 inputDirection = moveAction.ReadValue<Vector2>();
 
         Vector3 move = new Vector3(inputDirection.x, 0, inputDirection.y);
-        move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized; 
+        move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
@@ -112,5 +128,41 @@ public class MouvementPerso : MonoBehaviour
         float targetAngles = cameraTransform.eulerAngles.y;
         Quaternion rotation = Quaternion.Euler(0, targetAngles, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && dashDispo == true)
+        {
+            dashDispo = false;
+            playerSpeed *= 5;
+            Invoke("ArreterDash", 0.25f);
+            Invoke("ReactiverDash", 5f);
+        }
+
+        // Spawn the bouclierGenere GameObject in front of the character
+        if (Input.GetKeyDown(KeyCode.Alpha2) && bouclierDispo == true)
+        {
+            Vector3 spawnPosition = transform.position + transform.forward * 2f + Vector3.up * 3.5f;
+            Quaternion spawnRotation = transform.rotation;
+            GameObject bouclierCree = Instantiate(bouclierGenere, spawnPosition, spawnRotation);
+            bouclierCree.SetActive(true);
+
+            bouclierDispo = false;
+            Destroy(bouclierCree, 10f);
+            Invoke("ReactiverBouclier", 20f);
+        }
+    }
+
+    void ArreterDash()
+    {
+        playerSpeed /= 5;
+    }
+
+    void ReactiverDash()
+    {
+        dashDispo = true;
+    }
+
+    void ReactiverBouclier()
+    {
+        bouclierDispo = true;
     }
 }

@@ -9,10 +9,10 @@ public class gestionUI : MonoBehaviour
     // Gestion pv
     public Image barrePv;
     float nbrPvMax = 100;
-    float nbrPvActuel = 100;
+    public static float nbrPvActuel = 100;
 
     // Gestion chargeur
-    float chargeurActuel = 15;
+    public static float chargeurActuel = 15;
     float chargeurMax = 15;
     
     public TextMeshProUGUI compteurChargeurActuel;
@@ -45,11 +45,16 @@ public class gestionUI : MonoBehaviour
     bool cooldownEnCoursGrenade = false;
     float cooldownActuelGrenade;
 
+
+    public AudioClip sonRechargementPistolet;
+    AudioSource audioSource;
     private void Start()
     {
         capaciteImageDash.fillAmount = 0;
         capaciteImageBouclier.fillAmount = 0;
         capaciteImageGrenade.fillAmount = 0;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -77,13 +82,6 @@ public class gestionUI : MonoBehaviour
         float pourcentagePv = nbrPvActuel / nbrPvMax;
         barrePv.fillAmount = pourcentagePv;
 
-        // Modification barre de vie
-        if (Input.GetKeyDown(KeyCode.Space) && nbrPvActuel > 0)
-        {
-            nbrPvActuel -= 10;
-        }
-
-
         // Gestion chargeur
         compteurChargeurActuel.text = chargeurActuel.ToString();
         compteurChargeurMax.text = chargeurMax.ToString();
@@ -93,8 +91,9 @@ public class gestionUI : MonoBehaviour
             chargeurActuel -= 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && chargeurActuel != 15)
         {
+            audioSource.PlayOneShot(sonRechargementPistolet);
             Invoke("Recharger", 1f);
         }
     }

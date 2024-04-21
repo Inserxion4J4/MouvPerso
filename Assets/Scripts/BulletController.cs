@@ -23,10 +23,10 @@ public class BulletController : MonoBehaviour
     {
        
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if(!hit && Vector3.Distance(transform.position, target) < 0.01f)
-        {
-            Destroy(gameObject);
-        }
+        //if(!hit && Vector3.Distance(transform.position, target) < 0.01f)
+        //{
+        //    Destroy(gameObject);
+        //}
 
     }
 
@@ -35,6 +35,12 @@ public class BulletController : MonoBehaviour
         ContactPoint contact = other.GetContact(0);
         GameObject.Instantiate(bulletDecal, contact.point + contact.normal * .0001f, Quaternion.LookRotation(contact.normal));
         Destroy(gameObject);
+
+        if(other.gameObject.tag == "ennemi")
+        {
+            // ennemiScript.pvEnnemi -= 20;
+            other.gameObject.GetComponent<ennemiScript>().PerteVie();
+        }
     }
 
 }
